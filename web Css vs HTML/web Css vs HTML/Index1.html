@@ -1,0 +1,352 @@
+﻿<!doctype html>
+<html>
+    <head>
+        <title>
+            Cửa hàng điện thoại
+        </title>
+         <meta charset="utf-8"/>
+        <!--[if lt IE 9]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+          <![endif]-->
+        <style>
+            #table1 {
+                border:none;
+                background-color:blue;
+                color:white;
+                font-size:40px; 
+                font-family:'Times New Roman';
+                text-decoration:none;              
+            }
+            #menu {
+                text-align:center;
+            }
+            ul#menu li{
+                display:inline;
+            }
+            ul#menu li a {
+                padding:10px 80px;
+                text-decoration:none;
+                background-color:yellow;
+                color:blue;
+            }
+                ul#menu li a:link {
+                    color:darkblue;
+                }
+                 ul#menu li a:visited {
+                    color:blue;
+                }
+                  ul#menu li a:hover {
+                    color:red;
+                }
+            a {
+                text-decoration:none;
+            }        
+            #ia {
+                border-style: groove;
+                border-width:5px;
+                border-color:aqua;
+            }
+           #ib {
+                border:thin solid black;
+                height: 13px;
+                width: 259px;
+            }
+           
+            .auto-style1 {
+                width: 290px;
+            }
+            div {
+            padding:25px;
+            border:25px solid navy;
+            background-color:white;
+            width:559px;
+            color:red;
+        }
+            nav, section, footer {
+                display:block;
+            }
+            section {
+                  width: 230px;
+                  }
+            section.hover :hover{
+                background-color: lightblue;
+
+                  }
+            nav {
+                float:right;
+                width: 319px;
+                height: 608px;
+            }
+            #gia{
+                border:5px solid green;
+                color: green;
+                padding: 10px 20px;
+                margin: 50px;
+                font-weight: bold;
+                outline-style: groove;
+                outline-color: green;
+                
+            }
+            #gia:hover{
+                color:white;
+                font-weight: bold;
+                font-size:120%;
+            }
+            footer {
+                float:left;
+                width:900px;
+            }
+            #ic {
+              border:1px solid Gainsboro;
+              padding:5px;
+              margin-left:2px;
+             height: 262px
+            }
+          </style>
+    </head>
+    <body style="height: 60px">
+       <center> 
+        <table id="table1">
+            <tr id="ia">
+            <td id="ia"><marquee style="width: 1055px; height: 56px">THẾ GIỚI DI ĐỘNG</marquee></td></tr>
+       </table>
+        
+        <hr />
+        <p>
+     
+        </p>
+    <ul id="menu">
+            <li><a href="Index1.html">Trang chủ</a></li>
+            <li><a href="trang1.html">Máy tính</a></li>
+            <li><a href="trang2.html">Điện thoại</a></li>
+            <li><a href="trang3.html">Tablet</a></li>
+        </ul></center>
+               <nav>
+                    <canvas id="myCanvas" width="200" height="100"
+style="border:1px solid #d3d3d3;">
+</canvas>
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    ctx.font = "30px Comic Sans MS";
+    ctx.fillStyle = "red";
+    ctx.textAlign = "center";
+    ctx.fillText("Welcome!!", canvas.width / 2, canvas.height / 2);
+</script>
+            <img src="google.jpg" style="height: 36px; width: 126px"/>
+    <form action="https://www.google.com/#gws_rd=ssl" style="width: 304px">
+        <input type="search" style="width: 170px" placeholder="Nhập nội dung tìm kiếm"/>
+        <input type="submit" name="Submit" value="Tìm"/> 
+     </form> 
+        <br />
+        <br />
+         <canvas id="canvas" width="100" height="100"
+style="background-color:#333; float:left"> 
+</canvas>
+        
+        <script>
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var radius = canvas.height / 2;
+            ctx.translate(radius, radius);
+            radius = radius * 0.90
+            setInterval(drawClock, 1000);
+
+            function drawClock() {
+                drawFace(ctx, radius);
+                drawNumbers(ctx, radius);
+                drawTime(ctx, radius);
+            }
+
+            function drawFace(ctx, radius) {
+                var grad;
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+                ctx.fillStyle = 'white';
+                ctx.fill();
+                grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+                grad.addColorStop(0, '#333');
+                grad.addColorStop(0.5, 'white');
+                grad.addColorStop(1, '#333');
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = radius * 0.1;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
+                ctx.fillStyle = '#333';
+                ctx.fill();
+            }
+
+            function drawNumbers(ctx, radius) {
+                var ang;
+                var num;
+                ctx.font = radius * 0.15 + "px arial";
+                ctx.textBaseline = "middle";
+                ctx.textAlign = "center";
+                for (num = 1; num < 13; num++) {
+                    ang = num * Math.PI / 6;
+                    ctx.rotate(ang);
+                    ctx.translate(0, -radius * 0.85);
+                    ctx.rotate(-ang);
+                    ctx.fillText(num.toString(), 0, 0);
+                    ctx.rotate(ang);
+                    ctx.translate(0, radius * 0.85);
+                    ctx.rotate(-ang);
+                }
+            }
+
+            function drawTime(ctx, radius) {
+                var now = new Date();
+                var hour = now.getHours();
+                var minute = now.getMinutes();
+                var second = now.getSeconds();
+                //hour
+                hour = hour % 12;
+                hour = (hour * Math.PI / 6) +
+                (minute * Math.PI / (6 * 60)) +
+                (second * Math.PI / (360 * 60));
+                drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+                //minute
+                minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+                drawHand(ctx, minute, radius * 0.8, radius * 0.07);
+                // second
+                second = (second * Math.PI / 30);
+                drawHand(ctx, second, radius * 0.9, radius * 0.02);
+            }
+
+            function drawHand(ctx, pos, length, width) {
+                ctx.beginPath();
+                ctx.lineWidth = width;
+                ctx.lineCap = "round";
+                ctx.moveTo(0, 0);
+                ctx.rotate(pos);
+                ctx.lineTo(0, -length);
+                ctx.stroke();
+                ctx.rotate(-pos);
+            }
+</script>
+                    <br />
+                  <br />
+     <table id="ib">
+        <tr id="ib">
+           <td id="ib" colspan="2"  style="background-color:green"><strong><center>Đăng nhập</center></strong></td>
+        </tr>
+        <tr >
+            <td id="ib"><strong>Tên thành viên:</strong></td>
+            <td id="ib">
+                <input type="name" size="20" maxlenght="21" style="width: 189px; height: 27px;"/>
+            </td>
+        </tr>
+        <tr>
+             <td id="ib" ><strong>Mật khẩu:</strong></td>
+            <td id="ib">
+                <input type="password" size="20" maxlenght="21"/" style="width: 189px; height: 27px;">
+            </td>
+        </tr>
+        <tr id="ib">
+           <td id="ib" colspan="2">
+               <center > <input type="submit" value="Đăng nhập" style="height: 35px"/>
+                <input type="reset" value="Nhập lại" style="width: 82px; height: 36px;"/>
+           </center> </td>
+        </tr>
+    </table>
+    <br />
+     <br />     
+     <table id="gia"><tr><td><a href="demo striped table.html"> Thống kê giá</a></td></tr></table>     
+</nav>
+        <section style=" padding-left:200px;float:left" >
+            <div><b>Từ ngày 31/7-31/8 cửa hàng chúng tôi sẽ áp dụng chương trình khuyến mãi </b></div>
+        </section>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <!--sản phẩm 1-->
+        <br />
+        <section id="ic" class ="hover" style="float:left">
+            <center><img src="dell-inspiron-3558-i3-5005u-4gb-500gb-win10-khongd-400-400x400.png" height="150" width="150" /></center>
+            <br />
+            <center><p1><b>Laptop Dell Inspiron 3458 i3 <br />
+                5005U/4GB/500GB/Win10<br /></b></p1></center
+             <br />
+            Giá: <b style="color:red;font-weight:bold">10.490.000₫</b>
+            <br />
+        </section>
+         <!--sản phẩm 2-->
+        <section id="ic" class ="hover" style="float:left">
+            <center><img src="lenovo-ideapad-100-14iby-n3540-2gb-500gb-win10-400-400x400.png" height="150" width="150" /></center>
+            <br />
+            <center><p1><b>Laptop Lenovo IdeaPad 100 <br />  14IBYN3540/2GB/500GB/Win10</b></p1></center>
+             <br />
+            Giá: <b style="color:red;font-weight:bold">5.990.000₫</b>
+            <br />
+        </section>
+        <!--sản phẩm 3-->
+        <section id="ic" class ="hover" style="float:left">
+            <center><img src="asus-x553ma-sx684b-2-400x400.png" height="150" width="150" /></center>
+            <br />
+            <center><p1><b>Laptop Asus X553MA <br />N3540/2GB/500GB/Win 8.1</b></p1></center>
+             <br />
+            Giá: <b style="color:red;font-weight:bold">6.990.000₫ </b>
+            <br /> 
+        </section>
+        <!--sản phẩm 4-->
+        <section id="ic" class="hover" style="float:left">
+            <center><img src="acer-es1-431-n3060-4gb-500gb-win10-400x400.png" height="150" width="150" /></center>
+            <br />
+            <center><p1><b>Laptop Acer ES1 431 <br />N3060/4GB/500GB/Win10</b></p1></center>
+             <br />
+            Giá: <b style="color:red;font-weight:bold">6.290.000₫</b>
+            <br />
+        </section>
+        <!--sản phẩm 5-->
+        <section id="ic" class="hover" style="float:left">
+            <center><img src="iphone-6s-plus-64gb-400-400x450.png" height="150" width="150" /></center>
+            <br />
+            <center><p1><b>Điện thoại iPhone 6s Plus 64GB<br /><br />
+                </b></p1></center>
+             <br />
+            Giá: <b style="color:red;font-weight:bold">24.620.000₫</b>
+            <br />
+        </section>
+         <!--sản phẩm 6-->
+        <section id="ic" class="hover" style="float:left">
+            <center><img src="samsung-galaxy-s6-edge-plus-1-400x460.png" height="150" width="150" /></center>
+            <br />
+            <center><p1><b>Điện thoại Samsung Galaxy S6 <br />Edge Plus
+</b></p1></center>
+             <br />
+            Giá: <b style="color:red;font-weight:bold">19.990.000₫</b>
+            <br />
+        </section>
+         <!--sản phẩm 7-->
+        <section id="ic" class="hover" style="float:left">
+            <center><img src="microsoft-lumia-650-1-400x460.png" height="150" width="150" /></center>
+            <br />
+            <center><p1><b>Điện thoại Microsoft Lumia<br /> 650 dual sim
+</b></p1></center>
+             <br />
+            Giá: <b style="color:red;font-weight:bold">3.990.000₫</b>
+            <br />
+        </section>
+        <!--sản phẩm 8-->
+        <section id="ic" class="hover" style="float:left">
+            <center><img src="oppo-r7s-1-400x533-400x533.png" height="150" width="150" /></center>
+            <br />
+            <center><p1><b>Điện thoại OPPO R7s<br /><br /></b></p1></center>
+             <br />
+            Giá: <b style="color:red;font-weight:bold">8.990.000₫</b>
+            <br />
+        </section>
+        <br />
+       <br />
+       
+        <br />
+        <footer style="font-size:10px;font-family:Tahoma">
+            <br />
+            <center style="width: 1066px"><p>&copy 2016 Công ty cổ phần Thế giới di động ,Thành phố Thủ Dầu Một, tỉnh Bình Dương</p></center>
+        </footer>
+            </body>
+</html>
